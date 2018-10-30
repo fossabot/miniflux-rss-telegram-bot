@@ -1,0 +1,10 @@
+# cache file
+__pycache__
+
+# database
+*.db
+
+# ctags
+tags
+
+

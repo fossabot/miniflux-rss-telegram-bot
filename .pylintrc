@@ -1,0 +1,6 @@
+[MASTER]
+ignore = *.db
+
+[MESSAGES CONTROL]
+confidence=HIGH
+disable=C0111, 
