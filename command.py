@@ -72,7 +72,7 @@ def add_feed(bot, update, args):
 
 def export(bot, update):
     """
-    export user feed to opml file
+    usage: /export
     """
     try:
         client = new_client(update.message.chat_id)
