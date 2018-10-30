@@ -1,0 +1,3 @@
+SQLAlchemy==1.2.12
+python_telegram_bot==11.1.0
+miniflux==0.0.8
