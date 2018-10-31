@@ -5,6 +5,7 @@ os: linux
 before_install:
 - openssl aes-256-cbc -K $encrypted_40eddaed022c_key -iv $encrypted_40eddaed022c_iv -in account.session.enc -out test/account.session -d
 install:
+-  pip install -U pip
 - pip install -r requirements.txt
 - sudo pip install  git+https://github.com/blue-bird1/tgintegration
 script:
