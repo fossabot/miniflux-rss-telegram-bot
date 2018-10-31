@@ -1,5 +1,6 @@
 #coding:utf-8
 import inspect
+from tool import help_doc
 
 def get_module_function__doc(module):
     module = __import__(module)
@@ -8,7 +9,7 @@ def get_module_function__doc(module):
     tmp = ''
     for _ in name_func_tuples:
         tmp = tmp+_.__doc__
-    return tmp
+    return help_doc+tmp
 
 def help(bot, update): 
     bot.send_message(chat_id=update.message.chat_id, text=get_module_function__doc('command'))

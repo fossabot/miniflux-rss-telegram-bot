@@ -35,6 +35,35 @@ edit .env file
 /get_entries  <num> # get rss
 ```
 
+auto print help
+```
+    usage: /me
+    
+    usage: /delete_feed <feed_id>
+    
+    usage: /get_categories
+    
+    usage: /create_categories title
+    
+    usage: /delete_category id 
+    
+    usage: /delte_user
+    
+    usage: /addfeed url category_id
+    
+    usage: /bind username password
+        
+    usage: /discover url
+    
+    usage: /export
+    
+    usage: /get_entries num
+    
+    usage: /new_user username password
+    
+    欢迎使用rss机器人,使用/help获取更多帮助
+```
+
 ###  Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
