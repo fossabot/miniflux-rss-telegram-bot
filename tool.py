@@ -5,6 +5,8 @@ from module import DBSession
 from module.user import User
 from error import UserNotBindError 
 from client import new_client
+from telegram.ext import CommandHandler
+from miniflux import ClientError
 
 def bot_function(arg_num=0):
     def decorator(func):
@@ -22,5 +24,5 @@ def bot_function(arg_num=0):
             except ClientError as error:
                 bot.send_message(chat_id=update.message.chat_id, text=error.get_error_reason())
                 return
-        return wrapper
+        return CommandHandler(func.__name__,wrapper, pass_args=bool(arg_num))
     return decorator

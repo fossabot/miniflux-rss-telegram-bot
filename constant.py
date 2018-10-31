@@ -5,16 +5,17 @@ BIND_OK_MSG = '''
 '''
 
 CREATE_OK_MSG = '''
-创建新用户成功
+创建成功
 '''
 
 ADD_FEED_OK_MSG = '''
 添加新订阅成功
 '''
 
-DELETE_FEED_OK_MSG = '''
-删除订阅成功
+DELETE_OK_MSG = '''
+删除成功
 '''
+
 
 NO_BIND_MSG = '''
 你还没有绑定用户
