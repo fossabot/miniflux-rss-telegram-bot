@@ -1,4 +1,9 @@
 ## miniflux-rss-telegram-bot
+
+![Docker Build Status](https://img.shields.io/docker/build/bluebird1/miniflux-rss-telegram-bot.svg)
+![Docker Automated build](https://img.shields.io/docker/automated/bluebird1/miniflux-rss-telegram-bot.svg)
+
+
 Telegram rss robot supported by miniflux
 
 ### Requirements
