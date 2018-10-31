@@ -3,7 +3,7 @@ import logging
 import os 
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
-from command import start,bind,new_user,add_feed,export,discover,get_entries
+from command import start,bind,new_user,add_feed,export,discover,get_entries, me, delete_feed
 from help import help
 from error import UserNotBindError
 
@@ -22,6 +22,8 @@ EXPORT_HANDLER = CommandHandler('export',export)
 DISCOVER_HANDLER = CommandHandler('discover',discover,pass_args=True)
 GET_ENTRIES_HANDLET = CommandHandler('get_entries', get_entries, pass_args=True)
 HELP_HANDLET = CommandHandler('help', help)
+ME_HANDLET = CommandHandler('me', me)
+DELETE_FEED_HANDLET = CommandHandler('delete_feed', delete_feed, pass_args=True)
 
 DISPATCHER.add_handler(START_HANDLER)
 DISPATCHER.add_handler(BIND_HANDLER)
@@ -31,5 +33,7 @@ DISPATCHER.add_handler(EXPORT_HANDLER)
 DISPATCHER.add_handler(DISCOVER_HANDLER)
 DISPATCHER.add_handler(GET_ENTRIES_HANDLET)
 DISPATCHER.add_handler(HELP_HANDLET)
+DISPATCHER.add_handler(ME_HANDLET)
+DISPATCHER.add_handler(DELETE_FEED_HANDLET)
 
 UPDATER.start_polling()

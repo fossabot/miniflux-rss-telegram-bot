@@ -4,7 +4,8 @@ import json
 import telegram 
 from inspect import *
 from client import new_client
-from constant import NO_BIND_MSG, CREATE_OK_MSG, ADD_FEED_OK_MSG, ID_NO_INT_MSG
+from tool import bot_function
+from constant import NO_BIND_MSG, CREATE_OK_MSG, ADD_FEED_OK_MSG, ID_NO_INT_MSG, DELETE_FEED_OK_MSG
 from telegram import InputFile
 from client import new_client
 from module import DBSession
@@ -127,3 +128,32 @@ def get_entries(bot, update, args):
     for _ in ret['entries']:
         bot.send_message(chat_id=update.message.chat_id,text=_['url'],parse_mode=telegram.ParseMode.HTML)
      
+@bot_function(arg_num=0)
+def me(bot, update, args, client): # pylint:disable=invalid-name,unused-argument
+    """
+    usage: /me
+    """
+    ret=client.me()
+    ret_text = '''
+     ID {} 用户名 {}
+    '''.format(ret['id'],ret['username'])
+    bot.send_message(chat_id=update.message.chat_id, text=ret_text)
+
+@bot_function(arg_num=1)
+def delete_feed(bot, update, args, client):
+    """
+    usage: /delete_feed <feed_id>
+    """
+    client.delete_feed(args[0])
+    bot.send_message(chat_id=update.message.chat_id, text=DELETE_FEED_OK_MSG)
+
+@bot_function(arg_num=0)
+def get_categories(bot, update, _, client):
+    """
+    usage: /get_categories
+    """
+    ret = client.get_categories()
+    ret_text=''
+    for i in ret:
+        ret_text = ret_text + 'id:{} title:{}'.format(i['id'],i['title'])
+    bot.send_message(chat_id=update.message.chat_id, text=ret_text)

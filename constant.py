@@ -12,6 +12,10 @@ ADD_FEED_OK_MSG = '''
 添加新订阅成功
 '''
 
+DELETE_FEED_OK_MSG = '''
+删除订阅成功
+'''
+
 NO_BIND_MSG = '''
 你还没有绑定用户
 '''
