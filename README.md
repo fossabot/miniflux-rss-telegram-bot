@@ -6,6 +6,10 @@ Telegram rss robot supported by miniflux
 `miniflux`
 
 ### install
+#### docker
+edit .env file
+`docker run --env-file=.env -d bluebird1/miniflux-rss-telegram-bot`
+#### python
 ```
 # pip -r requirements.txt
 # export token <you bot token>
