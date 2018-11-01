@@ -2,7 +2,8 @@
 
 ![Docker Build Status](https://img.shields.io/docker/build/bluebird1/miniflux-rss-telegram-bot.svg)
 ![Docker Automated build](https://img.shields.io/docker/automated/bluebird1/miniflux-rss-telegram-bot.svg)
-
+[![Build Status](https://travis-ci.org/blue-bird1/miniflux-rss-telegram-bot.svg?branch=master)](https://travis-ci.org/blue-bird1/miniflux-rss-telegram-bot)
+[![Coverage Status](https://coveralls.io/repos/github/blue-bird1/miniflux-rss-telegram-bot/badge.svg)](https://coveralls.io/github/blue-bird1/miniflux-rss-telegram-bot)
 
 Telegram rss robot supported by miniflux
 
