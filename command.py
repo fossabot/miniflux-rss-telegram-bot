@@ -70,6 +70,9 @@ def add_feed(bot, update, args):
     bot.send_message(chat_id=update.message.chat_id, text=ADD_FEED_OK_MSG)
 
 def import_feed(bot, update):
+    """
+    发送opml文件将会导入
+    """
     if not update.document.file_name.split('.')[-1]!='opml':
          return
     try:

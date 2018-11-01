@@ -33,7 +33,8 @@ def bot_function(arg_num=0):
                 bot.send_message(chat_id=update.message.chat_id, text=error.get_error_reason())
                 return
         global help_doc
-        help_doc = help_doc + func.__doc__
+        if func.__doc__:
+            help_doc = help_doc + func.__doc__
         return CommandHandler(func.__name__,wrapper, pass_args=bool(arg_num))
     return decorator
 
