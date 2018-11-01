@@ -2,9 +2,12 @@ notifications:
   email: false
 language: python
 python:
-- 3.7-dev
+  - 3.7-dev
 os: linux
 install:
     - pip install -r requirements.txt
+    - pip install -r requirements-dev.txt
 script:
-    - cd unittest && pytest
+    - cd unittest && pytest --cov
+after_success:
+  - coveralls
