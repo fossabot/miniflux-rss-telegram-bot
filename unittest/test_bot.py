@@ -45,3 +45,6 @@ def test_bot_function():
         """
         pass
     assert isinstance(test,CommandHandler)
+
+def test_run():
+    import run

@@ -39,8 +39,3 @@ def bot_function(arg_num=0):
     return decorator
 
 
-def random_char(len=8):
-    _ = ''
-    for i in range(len):
-        _ = _+random.choice(string.letters)
-    return _

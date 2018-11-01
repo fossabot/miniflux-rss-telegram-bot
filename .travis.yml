@@ -8,6 +8,6 @@ install:
     - pip install -r requirements.txt
     - pip install -r requirements-dev.txt
 script:
-    - cd unittest && pytest --cov
+    - cd unittest && pytest --cov=..
 after_success:
   - coveralls
