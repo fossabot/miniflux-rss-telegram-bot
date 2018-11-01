@@ -5,7 +5,7 @@ import telegram
 from inspect import *
 from client import new_client
 from tool import bot_function
-from constant import NO_BIND_MSG, CREATE_OK_MSG, ADD_FEED_OK_MSG, ID_NO_INT_MSG, DELETE_OK_MSG
+from constant import * 
 from telegram import InputFile
 from client import new_client
 from module import DBSession
@@ -155,7 +155,7 @@ def get_categories(bot, update, _, client):
     ret = client.get_categories()
     ret_text=''
     for i in ret:
-        ret_text = ret_text + 'id:{} title:{}'.format(i['id'],i['title'])
+        ret_text = ret_text + 'id:{} title:{}\n'.format(i['id'],i['title'])
     bot.send_message(chat_id=update.message.chat_id, text=ret_text)
 
 @bot_function(arg_num=1)
@@ -163,7 +163,7 @@ def create_category(bot, update,args, client):
     """
     usage: /create_categories title
     """
-    ret = client.create_categories(args[0])
+    ret = client.create_category(args[0])
     bot.send_message(chat_id=update.message.chat_id, text=CREATE_OK_MSG)
 
 @bot_function(arg_num=1)
@@ -171,7 +171,7 @@ def delete_category(bot, update,args, client):
     """
     usage: /delete_category id 
     """
-    ret = client.delete_categories(args[0])
+    ret = client.delete_category(args[0])
     bot.send_message(chat_id=update.message.chat_id, text=DELETE_OK_MSG)
 
 
