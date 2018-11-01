@@ -3,4 +3,4 @@ ignore = *.db
 
 [MESSAGES CONTROL]
 confidence=HIGH
-disable=C0111, 
+disable=C0111,R,C,W 

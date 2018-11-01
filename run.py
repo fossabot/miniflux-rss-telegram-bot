@@ -1,9 +1,9 @@
 #coding:utf-8
 import logging
-import os 
+import os
 from telegram.ext import Updater
-from telegram.ext import CommandHandler
-from command import * 
+from telegram.ext import CommandHandler,MessageHandler, Filters
+from command import *
 from help import help
 from error import UserNotBindError
 
@@ -22,6 +22,7 @@ EXPORT_HANDLER = CommandHandler('export',export)
 DISCOVER_HANDLER = CommandHandler('discover',discover,pass_args=True)
 GET_ENTRIES_HANDLET = CommandHandler('get_entries', get_entries, pass_args=True)
 HELP_HANDLET = CommandHandler('help', help)
+IMPORT_HANDLET = MessageHandler(Filters.document, import_feed)
 
 DISPATCHER.add_handler(START_HANDLER)
 DISPATCHER.add_handler(BIND_HANDLER)
@@ -37,5 +38,7 @@ DISPATCHER.add_handler(get_categories)
 DISPATCHER.add_handler(create_category)
 DISPATCHER.add_handler(delete_category)
 DISPATCHER.add_handler(delete_user)
+DISPATCHER.add_handler(IMPORT_HANDLET)
 
-UPDATER.start_polling()
+if __name__ == "__main__":
+    UPDATER.start_polling()

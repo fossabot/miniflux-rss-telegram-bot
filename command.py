@@ -1,11 +1,10 @@
-#codoing:utf-8
+# coding:utf-8
 import io
-import json
-import telegram 
+import telegram
 from inspect import *
 from client import new_client
 from tool import bot_function
-from constant import * 
+from constant import *
 from telegram import InputFile
 from client import new_client
 from module import DBSession
@@ -28,7 +27,7 @@ def bind(bot, update, args):
        bot.send_message(chat_id=update.message.chat_id, text=getdoc(globals()[getframeinfo(currentframe()).function]))
        return
     session = DBSession()
-    user = User(id=update.message.chat_id, username=args[0], password=args[1]) 
+    user = User(id=update.message.chat_id, username=args[0], password=args[1])
     session.merge(user)
     session.commit()
     session.close()
@@ -42,17 +41,17 @@ def new_user(bot, update, args):
        bot.send_message(chat_id=update.message.chat_id, text=getdoc(globals()[getframeinfo(currentframe()).function]))
        return
     try:
-        admin_client.create_user(args[0],args[1], False)    
+        admin_client.create_user(args[0],args[1], False)
     except ClientError as e: # pylint: disable=invalid-name
         bot.send_message(chat_id=update.message.chat_id, text=e.get_error_reason())
-        return 
+        return
     bot.send_message(chat_id=update.message.chat_id, text=CREATE_OK_MSG)
-    
+
 def add_feed(bot, update, args):
     """
     usage: /addfeed url category_id
     """
-    if len(args) != 2: 
+    if len(args) != 2:
        bot.send_message(chat_id=update.message.chat_id, text=ADD_FEED_USAGE_MSG)
        return
     if not args[1].isdecimal():
@@ -62,7 +61,7 @@ def add_feed(bot, update, args):
         client = new_client(update.message.chat_id)
     except UserNotBindError as e: # pylint: disable=invalid-name
         bot.send_message(chat_id=update.message.chat_id, text=NO_BIND_MSG)
-        return    
+        return
     try:
         client.create_feed(args[0], int(args[1]))
     except ClientError as e: # pylint: disable=invalid-name
@@ -70,6 +69,24 @@ def add_feed(bot, update, args):
         return
     bot.send_message(chat_id=update.message.chat_id, text=ADD_FEED_OK_MSG)
 
+def import_feed(bot, update):
+    if not update.document.file_name.split('.')[-1]!='opml':
+         return
+    try:
+        client = new_client(update.message.chat_id)
+    except UserNotBindError:
+        bot.send_message(chat_id=update.message.chat_id, text=NO_BIND_MSG)
+        return
+
+    file_id = update.message.document.file_id
+    newFile = bot.get_file(file_id)
+    data = newFile.download_as_bytearray()
+    breakpoint()
+    try:
+        client.import_feeds(data.decode())
+    except ClientError as error:
+        bot.send_message(chat_id=update.message.chat_id, text=error.get_error_reason())
+        return
 
 def export(bot, update):
     """
@@ -79,10 +96,10 @@ def export(bot, update):
         client = new_client(update.message.chat_id)
     except UserNotBindError:
         bot.send_message(chat_id=update.message.chat_id, text=NO_BIND_MSG)
-        return    
+        return
     try:
          _ = client.export()
-    except ClientError as error: 
+    except ClientError as error:
         bot.send_message(chat_id=update.message.chat_id, text=error.get_error_reason())
         return
     opml_file = io.BytesIO(bytes(_,'utf-8'))
@@ -90,44 +107,44 @@ def export(bot, update):
     opml_file.close()
 
 def discover(bot, update, args):
-    """    
+    """
     usage: /discover url
     """
-    if len(args) != 1: 
+    if len(args) != 1:
        bot.send_message(chat_id=update.message.chat_id, text=getdoc(globals()[getframeinfo(currentframe()).function]))
        return
     try:
         client = new_client(update.message.chat_id)
     except UserNotBindError:
         bot.send_message(chat_id=update.message.chat_id, text=NO_BIND_MSG)
-        return    
+        return
     try:
         ret  = client.discover(args[0])
-    except ClientError as error: 
+    except ClientError as error:
         bot.send_message(chat_id=update.message.chat_id, text=error.get_error_reason())
         return
-    bot.send_message(chat_id=update.message.chat_id,text="发现成功 订阅地址{}".format(ret[0]['url'])) 
+    bot.send_message(chat_id=update.message.chat_id,text="发现成功 订阅地址{}".format(ret[0]['url']))
 
 def get_entries(bot, update, args):
     """
     usage: /get_entries num
     """
-    if len(args) != 1: 
+    if len(args) != 1:
        bot.send_message(chat_id=update.message.chat_id, text=getdoc(globals()[getframeinfo(currentframe()).function]))
        return
     try:
         client = new_client(update.message.chat_id)
     except UserNotBindError:
         bot.send_message(chat_id=update.message.chat_id, text=NO_BIND_MSG)
-        return    
+        return
     try:
         ret  = client.get_entries(limit=args[0])
-    except ClientError as error: 
+    except ClientError as error:
         bot.send_message(chat_id=update.message.chat_id, text=error.get_error_reason())
         return
     for _ in ret['entries']:
         bot.send_message(chat_id=update.message.chat_id,text=_['url'],parse_mode=telegram.ParseMode.HTML)
-     
+
 @bot_function(arg_num=0)
 def me(bot, update, args, client): # pylint:disable=invalid-name,unused-argument
     """
@@ -169,7 +186,7 @@ def create_category(bot, update,args, client):
 @bot_function(arg_num=1)
 def delete_category(bot, update,args, client):
     """
-    usage: /delete_category id 
+    usage: /delete_category id
     """
     ret = client.delete_category(args[0])
     bot.send_message(chat_id=update.message.chat_id, text=DELETE_OK_MSG)
