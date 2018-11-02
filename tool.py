@@ -1,8 +1,6 @@
 # coding:utf-8
 import functools
 from typing import Callable
-# from module import DBSession
-# from module.user import User
 from error import UserNotBindError
 from constant import *
 from client import new_client

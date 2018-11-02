@@ -1,14 +1,11 @@
 # coding:utf-8
-from module import DBSession
-from module.user import User
 from error import UserNotBindError
 from miniflux import Client
-from config import SERBER_ADDR
+from config import SERBER_ADDR, redis_client
 
-def new_client(user_id: str, session=DBSession) -> Client:
-    session = session()
-    user = session.query(User).filter(User.id == user_id).first()
-    session.close()
+def new_client(user_id: str, session=redis_client) -> Client:
+    user = session.get(user_id)
+    username,password = user.split()
     if user is None:
        raise UserNotBindError
-    return Client(SERBER_ADDR,username=user.username, password=user.password)
+    return Client(SERBER_ADDR,username=username, password=password)

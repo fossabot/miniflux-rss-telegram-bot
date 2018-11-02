@@ -7,9 +7,7 @@ from tool import bot_function
 from constant import *
 from telegram import InputFile
 from client import new_client
-from module import DBSession
-from module.user import User
-from config import admin_client
+from config import admin_client,redis_client
 from miniflux import ClientError
 from error import UserNotBindError
 
@@ -38,11 +36,7 @@ def bind(bot, update, args):
             getframeinfo(
                 currentframe()).function]))
        return
-    session = DBSession()
-    user = User(id=update.message.chat_id, username=args[0], password=args[1])
-    session.merge(user)
-    session.commit()
-    session.close()
+    redis_client.set(update.message.chat_id,'{} {}'.format(args[0],args[1]))
     bot.send_message(chat_id=update.message.chat_id, text=BIND_OK_MSG)
 
 
