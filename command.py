@@ -93,23 +93,12 @@ def discover(bot, update, args):
     ret  = client.discover(args[0])
     bot.send_message(chat_id=update.message.chat_id,text="发现成功 订阅地址{}".format(ret[0]['url']))
 
+@bot_function(arg_num=1)
 def get_entries(bot, update, args):
     """
     usage: /get_entries num
     """
-    if len(args) != 1:
-       bot.send_message(chat_id=update.message.chat_id, text=getdoc(globals()[getframeinfo(currentframe()).function]))
-       return
-    try:
-        client = new_client(update.message.chat_id)
-    except UserNotBindError:
-        bot.send_message(chat_id=update.message.chat_id, text=NO_BIND_MSG)
-        return
-    try:
-        ret  = client.get_entries(limit=args[0])
-    except ClientError as error:
-        bot.send_message(chat_id=update.message.chat_id, text=error.get_error_reason())
-        return
+    ret  = client.get_entries(limit=args[0])
     for _ in ret['entries']:
         bot.send_message(chat_id=update.message.chat_id,text=_['url'],parse_mode=telegram.ParseMode.HTML)
 
