@@ -1,9 +1,18 @@
 #coding:utf-8
 
+REFRESH_OK_MSG = '''
+刷新成功
+'''
 BIND_OK_MSG = '''
 绑定成功
 '''
+MARK_OK_MSG = '''
+标记状态切换成功
+'''
 
+UPDATE_OK_MSG = '''
+更新成功
+'''
 CREATE_OK_MSG = '''
 创建成功
 '''

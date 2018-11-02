@@ -35,6 +35,12 @@ DISPATCHER.add_handler(create_category)
 DISPATCHER.add_handler(delete_category)
 DISPATCHER.add_handler(delete_user)
 DISPATCHER.add_handler(IMPORT_HANDLET)
+DISPATCHER.add_handler(get_feeds)
+DISPATCHER.add_handler(get_feed)
+DISPATCHER.add_handler(refresh_feed)
+DISPATCHER.add_handler(update_category)
+DISPATCHER.add_handler(get_feed_entries)
+DISPATCHER.add_handler(bookmark)
 
 if __name__ == "__main__":
     UPDATER.start_polling()
