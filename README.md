@@ -45,6 +45,16 @@ edit .env file
 
 auto print help
 ```
+    usage: /new_user username password
+    
+    usage: /addfeed url category_id
+    
+    usage: /export
+    
+    usage: /discover url
+    
+    usage: /get_entries num
+    
     usage: /me
     
     usage: /delete_feed <feed_id>
@@ -53,21 +63,25 @@ auto print help
     
     usage: /create_categories title
     
-    usage: /delete_category id 
+    usage: /delete_category id
     
     usage: /delte_user
     
-    usage: /addfeed url category_id
+    usage:/get_feeds
+    
+    usage:/get_feed feed_id
+    
+    usage:/refresh_feed feed_id
+    
+    usage:/get_feed_entries feed_id num
+    
+    usage:/bookmark id
+    
+    usage:/update_category category_id title
     
     usage: /bind username password
-        
-    usage: /discover url
     
-    usage: /export
-    
-    usage: /get_entries num
-    
-    usage: /new_user username password
+    发送opml文件将会导入
     
     欢迎使用rss机器人,使用/help获取更多帮助
 ```

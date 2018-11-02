@@ -195,7 +195,7 @@ def delete_user(bot, update, _, client):
 @bot_function(arg_num=0)
 def get_feeds(bot, update, _, client):
     """
-    /get_feeds
+    usage:/get_feeds
     """
     ret = client.get_feeds()
     for _ in ret:
@@ -206,7 +206,7 @@ def get_feeds(bot, update, _, client):
 @bot_function(arg_num=1)
 def get_feed(bot, update, args, client):
     """
-    /get_feed feed_id
+    usage:/get_feed feed_id
     """
     ret = client.get_feed(args[0])
     bot.send_message(chat_id=update.message.chat_id,
@@ -216,7 +216,7 @@ def get_feed(bot, update, args, client):
 @bot_function(arg_num=1)
 def refresh_feed(bot, update, args, client):
     """
-    /refresh_feed feed_id
+    usage:/refresh_feed feed_id
     """
     ret = client.refresh_feed(args[0])
     bot.send_message(chat_id=update.message.chat_id, text=REFRESH_OK_MSG)
@@ -225,7 +225,7 @@ def refresh_feed(bot, update, args, client):
 @bot_function(arg_num=2)
 def get_feed_entries(bot, update, args, client):
     """
-    /get_feed_entries feed_id num
+    usage:/get_feed_entries feed_id num
     """
     ret = client.get_feed_entries(args[0], limit=args[1])
     for _ in ret:
@@ -235,7 +235,7 @@ def get_feed_entries(bot, update, args, client):
 @bot_function(arg_num=1)
 def bookmark(bot, update, args, client):
     """
-    /bookmark id
+    usage:/bookmark id
     """
     ret = client.toggle_bookmark(args[0])
     bot.send_message(chat_id=update.message.chat_id, text=MARK_OK_MSG)
@@ -244,7 +244,7 @@ def bookmark(bot, update, args, client):
 @bot_function(arg_num=2)
 def update_category(bot, update, args, client):
     """
-    /update_category category_id title
+    usage:/update_category category_id title
     """
     ret=client.update_category(args[0], args[1])
     bot.send_message(chat_id = update.message.chat_id, text = UPDATE_OK_MSG)
