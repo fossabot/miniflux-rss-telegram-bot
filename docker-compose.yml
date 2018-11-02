@@ -1,0 +1,23 @@
+version: '3'
+services:
+  miniflux:
+    image: miniflux/miniflux:latest
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://miniflux:secret@db/miniflux?sslmode=disable
+  db:
+    image: postgres:10.1
+    environment:
+      - POSTGRES_USER=miniflux
+      - POSTGRES_PASSWORD=secret
+    volumes:
+      - miniflux-db:/var/lib/postgresql/data
+  bot:
+    build: .
+    environment:
+      - host=miniflux
+      - port=8080
+    env_file: .env
+volumes:
+  miniflux-db:

@@ -15,6 +15,11 @@ Telegram rss robot supported by miniflux
 #### docker
 edit .env file
 `docker run --env-file=.env -d bluebird1/miniflux-rss-telegram-bot`
+#### docker-compose
+edit .env file
+`docker-compose up -d`
+`docker exec -ti rssbot_miniflux_1  /usr/local/bin/miniflux -migrate`
+`docker exec -ti rssbot_miniflux_1  /usr/local/bin/miniflux  -create-admin` # need like .env username password
 #### python
 ```
 # pip -r requirements.txt
