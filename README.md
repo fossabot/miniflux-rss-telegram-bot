@@ -4,6 +4,7 @@
 ![Docker Automated build](https://img.shields.io/docker/automated/bluebird1/miniflux-rss-telegram-bot.svg)
 [![Build Status](https://travis-ci.org/blue-bird1/miniflux-rss-telegram-bot.svg?branch=master)](https://travis-ci.org/blue-bird1/miniflux-rss-telegram-bot)
 [![Coverage Status](https://coveralls.io/repos/github/blue-bird1/miniflux-rss-telegram-bot/badge.svg)](https://coveralls.io/github/blue-bird1/miniflux-rss-telegram-bot)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fblue-bird1%2Fminiflux-rss-telegram-bot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fblue-bird1%2Fminiflux-rss-telegram-bot?ref=badge_shield)
 
 Telegram rss robot supported by miniflux
 
@@ -91,3 +92,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fblue-bird1%2Fminiflux-rss-telegram-bot.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fblue-bird1%2Fminiflux-rss-telegram-bot?ref=badge_large)
